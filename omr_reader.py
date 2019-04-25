@@ -96,12 +96,12 @@ def grade(questionTuple, answer_key):
 
 
 if __name__ == "__main__":
-	
-	image_name = input('Enter the name of Image: ')
+
+	image_name = input('Enter the name of image: ')
 	dark = input('Enter \'y\' if the background is dark, \'n\' otherwise: ')
-	key_path = input('Enter the name of the Key: ')
+	key_path = input('Enter the name of the key: ')
 	print('\n')
-	
+
 	answer_key1 = []
 	answer_key2 = []
 	answer_key = []
@@ -121,12 +121,12 @@ if __name__ == "__main__":
 			answer_key2.append(char)
 	answer_key.append(answer_key2)
 	# print('Answer Key (Block 2): '+str(answer_key2)+' :length '+str(len(answer_key2)) )
-	
+
 	if(dark == 'y'):
 		thresh_val = 100
 	else:
 		thresh_val = 150
-	
+
 	image = cv2.imread(image_name)
 	gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 	cv2.imwrite('1 log_full_gray.png', gray)
@@ -151,7 +151,7 @@ if __name__ == "__main__":
 	answers = []
 	correct =[]
 	total = 0
-	for i in range(2): # since we're gonna have two blocks 
+	for i in range(2): # since we're gonna have two blocks
 		# cropping and appending image to the list
 
 		warped = four_point_transform(paper.copy(), border[i].reshape(4, 2))
@@ -178,3 +178,7 @@ if __name__ == "__main__":
 		logImage(questionTuples[i][0], questionTuples[i][1], (255,0,255), str(i+8)+' log_questions' + str(i) + '.png')
 
 	print('Final Score: '+str(total))
+
+	write = paper.copy()
+	cv2.putText(write, str(total), (300,500), cv2.FONT_HERSHEY_SIMPLEX, 10, (255,0,0), 20, cv2.LINE_AA)
+	cv2.imwrite('10 paper_log_with_final_score.png', write)
