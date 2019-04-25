@@ -97,8 +97,11 @@ def grade(questionTuple, answer_key):
 
 if __name__ == "__main__":
 
+	# name of the image to check
 	image_name = input('Enter the name of image: ')
+	# input for dark or not
 	dark = input('Enter \'y\' if the background is dark, \'n\' otherwise: ')
+	# name of answer key
 	key_path = input('Enter the name of the key: ')
 	print('\n')
 
@@ -113,14 +116,12 @@ if __name__ == "__main__":
 		if char.isupper() and char.isalpha():
 			answer_key1.append(char)
 	answer_key.append(answer_key1)
-	# print('Answer Key (Block 1): '+str(answer_key1)+' :length '+str(len(answer_key1)) )
 
 	for i in range(30):
 		char = str(string[30+i])
 		if char.isupper() and char.isalpha():
 			answer_key2.append(char)
 	answer_key.append(answer_key2)
-	# print('Answer Key (Block 2): '+str(answer_key2)+' :length '+str(len(answer_key2)) )
 
 	if(dark == 'y'):
 		thresh_val = 100
